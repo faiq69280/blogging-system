@@ -19,7 +19,7 @@ A scalable, multi-user content creation platform supporting article publishing, 
 ---
 
 ## Architecture
-
+```mermaid
 flowchart LR
     Client[Web / Mobile Client]
     APIGW[API Gateway<br/>(Spring Cloud Gateway)]
@@ -41,3 +41,4 @@ flowchart LR
     Content -->|Publish Events<br/>(likes, comments)| RabbitMQ
     RabbitMQ --> Notification
     Notification -->|Send Alerts| Client
+```
