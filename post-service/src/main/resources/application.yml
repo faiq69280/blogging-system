@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: article-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blogging_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  redis:
+    host: localhost
+    port: 6379
+    cache:
+      type: redis
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+
+  logging:
+    level:
+      org:
+        springframework:
+          amqp: INFO
+        rabbit: INFO
+aws:
+  s3Bucket: blogging-media
+  secretKey: ${AWS_SECRET_KEY}
+  accessKeyId: ${AWS_ACCESS_KEY}
+  region: eu-north-1
+
+internal-secret: f2d8a9c2b3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0
+
+security:
+  jwt:
+    public-key: classpath:keys/pub_key_x509.pem
+
+server:
+  port: 8082
+
