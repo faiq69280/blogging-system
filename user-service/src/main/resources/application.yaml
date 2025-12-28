@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+security:
+  jwt:
+    private-key: classpath:keys/piv_key_pk8.pem
+    public-key: classpath:keys/pub_key_x509.pem
+    expiration-ms: 3600000
+
+
+server:
+  port: 8081
