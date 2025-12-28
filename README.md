@@ -21,24 +21,18 @@ A scalable, multi-user content creation platform supporting article publishing, 
 ## Architecture
 ```mermaid
 flowchart LR
-    Client[Web / Mobile Client]
-    APIGW[API Gateway<br/>(Spring Cloud Gateway)]
-    Auth[Auth Service]
-    Content[Content Service]
-    Notification[Notification Service]
-    AuthDB[(Auth DB<br/>PostgreSQL)]
-    ContentDB[(Content DB<br/>PostgreSQL)]
-    Redis[(Redis Cache)]
-    S3[(AWS S3<br/>Media Storage)]
-    RabbitMQ[(RabbitMQ<br/>Event Broker)]
-    Client --> APIGW
-    APIGW --> Auth
-    APIGW --> Content
-    Auth --> AuthDB
-    Content --> ContentDB
-    Content --> Redis
-    Content --> S3
-    Content -->|Publish Events<br/>(likes, comments)| RabbitMQ
-    RabbitMQ --> Notification
-    Notification -->|Send Alerts| Client
+  %% ===== Clients / Edge =====
+  C[Client<br/>(Web / Mobile)]
+  G[API Gateway<br/>(Spring Cloud Gateway)]
+
+  %% ===== Services =====
+  A[Auth Service]
+  S[Content Service]
+  N[Notification Service]
+
+  %% ===== Data / Infra =====
+  ADB[(Auth DB<br/>PostgreSQL)]
+  SDB[(Content DB<br/>PostgreSQL)]
+  R[(Redis Cache)]
+  Q[(RabbitMQ<br/]()
 ```
