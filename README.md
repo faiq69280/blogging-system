@@ -22,31 +22,22 @@ A scalable, multi-user content creation platform supporting article publishing, 
 
 flowchart LR
     Client[Web / Mobile Client]
-
     APIGW[API Gateway<br/>(Spring Cloud Gateway)]
-
     Auth[Auth Service]
     Content[Content Service]
     Notification[Notification Service]
-
     AuthDB[(Auth DB<br/>PostgreSQL)]
     ContentDB[(Content DB<br/>PostgreSQL)]
     Redis[(Redis Cache)]
     S3[(AWS S3<br/>Media Storage)]
     RabbitMQ[(RabbitMQ<br/>Event Broker)]
-
     Client --> APIGW
-
     APIGW --> Auth
     APIGW --> Content
-
     Auth --> AuthDB
-
     Content --> ContentDB
     Content --> Redis
     Content --> S3
-
     Content -->|Publish Events<br/>(likes, comments)| RabbitMQ
     RabbitMQ --> Notification
-
     Notification -->|Send Alerts| Client
